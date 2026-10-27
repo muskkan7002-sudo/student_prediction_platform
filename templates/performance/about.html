@@ -1,0 +1,58 @@
+{% extends "performance/base.html" %}
+
+{% block title %}About | Student Performance Prediction{% endblock %}
+{% block page_label %}PROJECT{% endblock %}
+{% block page_heading %}About EduInsight{% endblock %}
+
+{% block content %}
+<section class="panel">
+    <p class="eyebrow dark">Project Overview</p>
+    <h1>About The Project</h1>
+    <p>
+        Student Performance Prediction System is a practical industrial training
+        project built with Django and Machine Learning. It helps institutions
+        identify academic performance levels and gives useful improvement
+        guidance for students.
+    </p>
+
+    <div class="feature-grid">
+        <div>
+            <span class="feature-icon">IN</span>
+            <h2>Inputs</h2>
+            <p>Attendance, study hours, previous marks, assignment score, and sleep hours.</p>
+        </div>
+        <div>
+            <span class="feature-icon">OP</span>
+            <h2>Output</h2>
+            <p>A performance category, readiness score, practical recommendation, and saved record.</p>
+        </div>
+        <div>
+            <span class="feature-icon">AI</span>
+            <h2>Technology</h2>
+            <p>Python, Django, SQLite, scikit-learn, pandas, joblib, HTML, and CSS.</p>
+        </div>
+        <div>
+            <span class="feature-icon">ML</span>
+            <h2>Model Evaluation</h2>
+            <p>Decision Tree, Random Forest, Logistic Regression, KNN, and Naive Bayes are compared.</p>
+        </div>
+        <div>
+            <span class="feature-icon">DB</span>
+            <h2>Dashboard</h2>
+            <p>Saved prediction records are summarized with category counts and average indicators.</p>
+        </div>
+        <div>
+            <span class="feature-icon">CM</span>
+            <h2>Metrics</h2>
+            <p>The training script generates accuracy, precision, recall, F1-score, and confusion matrix.</p>
+        </div>
+    </div>
+
+    <div class="workflow">
+        <div><span>1</span> Student details are entered through the Django form.</div>
+        <div><span>2</span> The values are sent to the prediction function.</div>
+        <div><span>3</span> The best trained model returns a performance category and readiness score.</div>
+        <div><span>4</span> The dashboard displays records, trends, and model evaluation metrics.</div>
+    </div>
+</section>
+{% endblock %}

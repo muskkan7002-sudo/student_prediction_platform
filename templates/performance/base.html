@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Student Performance Prediction{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=4">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <a class="brand" href="{% url 'home' %}">
+                <span class="brand-mark">E</span>
+                <span>EduInsight<small>STUDENT ANALYTICS</small></span>
+            </a>
+            <p class="sidebar-label">WORKSPACE</p>
+            <nav class="side-nav" aria-label="Main navigation">
+                <a class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg>Overview</a>
+                <a class="{% if request.resolver_match.url_name == 'predict' %}active{% endif %}" href="{% url 'predict' %}"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>New prediction</a>
+                <a class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}" href="{% url 'dashboard' %}"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5m0 14h17M8 16v-4m5 4V7m5 9v-6"/></svg>Analytics</a>
+                <a class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'about' %}"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg>About project</a>
+                <a href="/admin/"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="m19.4 15 .1.1 1.4 1.1-1.4 2.4-1.7-.7a8 8 0 0 1-1.6.9l-.3 1.8h-2.8l-.3-1.8a8 8 0 0 1-1.6-.9l-1.7.7-1.4-2.4 1.4-1.1a7 7 0 0 1 0-1.9l-1.4-1.1 1.4-2.4 1.7.7a8 8 0 0 1 1.6-.9l.3-1.8h2.8l.3 1.8a8 8 0 0 1 1.6.9l1.7-.7 1.4 2.4-1.4 1.1a7 7 0 0 1 0 1.8z" transform="translate(-1 -1) scale(1.08)"/></svg>Admin</a>
+            </nav>
+            <div class="sidebar-bottom">
+                <div class="profile-avatar">
+                    {% if user.is_authenticated %}
+                        {{ user.username|first|upper }}
+                    {% else %}
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.3"/><path d="M5.5 20c.4-3.6 2.8-5.5 6.5-5.5s6.1 1.9 6.5 5.5"/></svg>
+                    {% endif %}
+                </div>
+                <div class="profile-copy">{% if user.is_authenticated %}{{ user.username }}{% else %}Student workspace{% endif %}<small>{% if user.is_authenticated %}Signed in{% else %}Performance insights{% endif %}</small></div>
+                {% if user.is_authenticated %}
+                    <form class="nav-form" method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}<button type="submit" aria-label="Log out">↗</button>
+                    </form>
+                {% else %}
+                    <a class="profile-login" href="{% url 'login' %}">Log in</a>
+                {% endif %}
+            </div>
+        </aside>
+        <div class="workspace">
+            <header class="workspace-topbar">
+                <div><span class="workspace-kicker">EDUINSIGHT / {% block page_label %}WORKSPACE{% endblock %}</span><strong>{% block page_heading %}Student performance{% endblock %}</strong></div>
+                <a class="topbar-action" href="{% url 'predict' %}"><span>＋</span> New prediction</a>
+            </header>
+            <main class="container main">
+                {% block content %}{% endblock %}
+            </main>
+            <footer class="footer"><div class="container footer-inner"><span>Industrial Training Project</span><span>Django · Machine Learning</span></div></footer>
+        </div>
+    </div>
+</body>
+</html>

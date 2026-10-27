@@ -1,0 +1,38 @@
+{% extends "performance/base.html" %}
+
+{% block title %}Login | Student Performance Prediction{% endblock %}
+
+{% block content %}
+<section class="auth-shell">
+    <div class="auth-intro">
+        <p class="eyebrow">Teacher Login</p>
+        <h1>Access Analytics Dashboard</h1>
+        <p>
+            Login is used for teacher/admin access to saved prediction analytics,
+            model evaluation, and student performance records.
+        </p>
+    </div>
+
+    <form class="auth-card" method="post">
+        {% csrf_token %}
+        <h2>Sign in</h2>
+        {% if form.non_field_errors %}
+            <div class="form-alert">{{ form.non_field_errors }}</div>
+        {% endif %}
+        <label>
+            <span>Username</span>
+            {{ form.username }}
+        </label>
+        <label>
+            <span>Password</span>
+            {{ form.password }}
+        </label>
+        <input type="hidden" name="next" value="{{ next }}">
+        <button class="button full" type="submit">Login</button>
+        <p class="muted login-help">
+            Use the Django staff account for teacher access. Student predictions
+            can still be created from the public prediction form.
+        </p>
+    </form>
+</section>
+{% endblock %}

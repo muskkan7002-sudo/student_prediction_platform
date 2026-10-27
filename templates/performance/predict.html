@@ -1,0 +1,39 @@
+{% extends "performance/base.html" %}
+
+{% block title %}Predict | Student Performance Prediction{% endblock %}
+{% block page_label %}ASSESSMENT{% endblock %}
+{% block page_heading %}New student prediction{% endblock %}
+
+{% block content %}
+<section class="form-shell">
+    <div class="form-intro">
+        <p class="eyebrow dark">Student Assessment</p>
+        <h1>Enter Student Details</h1>
+        <p>
+            Enter current academic and lifestyle indicators to generate a
+            performance prediction with advisor-style feedback.
+        </p>
+        <div class="form-steps">
+            <span>01 Capture indicators</span>
+            <span>02 Run trained model</span>
+            <span>03 Review action plan</span>
+        </div>
+    </div>
+    <form method="post" class="form-grid">
+        {% csrf_token %}
+        {% for field in form %}
+            <label>
+                <span>{{ field.label }}</span>
+                {{ field }}
+                {% if field.help_text %}
+                    <small class="help-text">{{ field.help_text }}</small>
+                {% endif %}
+                {% if field.errors %}
+                    <small class="error">{{ field.errors|striptags }}</small>
+                {% endif %}
+            </label>
+        {% endfor %}
+        <button class="button full" type="submit">Predict Result</button>
+    </form>
+</section>
+{% endblock %}

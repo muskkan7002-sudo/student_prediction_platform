@@ -1,0 +1,50 @@
+{% extends "performance/base.html" %}
+
+{% block title %}Result | Student Performance Prediction{% endblock %}
+{% block page_label %}ASSESSMENT{% endblock %}
+{% block page_heading %}Prediction report{% endblock %}
+
+{% block content %}
+<section class="result-layout result-{{ theme }}">
+    <div class="result-summary">
+        <p class="eyebrow">Prediction Result</p>
+        <h1>{{ record.prediction }}</h1>
+        <p class="student-name">{{ record.student_name }}</p>
+        <div class="result-chip">Readiness Score: {{ readiness_score }}%</div>
+        <p class="result-copy">
+            The prediction is generated from academic performance, study habits,
+            assignment work, attendance, and wellbeing indicators.
+        </p>
+        <div class="result-actions">
+            <a class="button" href="{% url 'prediction_report_pdf' record.pk %}">Download PDF Report</a>
+            <a class="button secondary" href="{% url 'predict' %}">Predict Another Student</a>
+        </div>
+    </div>
+
+    <div class="result-details">
+        <div class="metrics">
+            <div><span>Attendance</span><strong>{{ record.attendance }}%</strong><small>Class presence</small></div>
+            <div><span>Study Hours</span><strong>{{ record.study_hours }}</strong><small>Daily average</small></div>
+            <div><span>Previous Marks</span><strong>{{ record.previous_marks }}%</strong><small>Academic baseline</small></div>
+            <div><span>Assignment</span><strong>{{ record.assignment_score }}%</strong><small>Coursework score</small></div>
+            <div><span>Sleep Hours</span><strong>{{ record.sleep_hours }}</strong><small>Wellbeing indicator</small></div>
+            <div><span>Readiness</span><strong>{{ readiness_score }}%</strong><small>Combined academic score</small></div>
+        </div>
+
+        <div class="suggestion">
+            <h2>Advisor Recommendation</h2>
+            <p>{{ record.suggestion }}</p>
+        </div>
+
+        <div class="insight-list">
+            <h2>Key Insights</h2>
+            {% for title, text in insights %}
+                <div>
+                    <strong>{{ title }}</strong>
+                    <p>{{ text }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,144 @@
+{
+  "best_model": "Random Forest",
+  "dataset_rows": 520,
+  "training_rows": 364,
+  "testing_rows": 156,
+  "feature_columns": [
+    "attendance",
+    "study_hours",
+    "previous_marks",
+    "assignment_score",
+    "sleep_hours"
+  ],
+  "target_column": "performance",
+  "classes": [
+    "Excellent",
+    "Good",
+    "Average",
+    "Needs Improvement"
+  ],
+  "model_results": [
+    {
+      "name": "Random Forest",
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0
+    },
+    {
+      "name": "Logistic Regression",
+      "accuracy": 0.9936,
+      "precision": 0.9937,
+      "recall": 0.9936,
+      "f1_score": 0.9936
+    },
+    {
+      "name": "Naive Bayes",
+      "accuracy": 0.9936,
+      "precision": 0.9937,
+      "recall": 0.9936,
+      "f1_score": 0.9936
+    },
+    {
+      "name": "K-Nearest Neighbors",
+      "accuracy": 0.9808,
+      "precision": 0.9812,
+      "recall": 0.9808,
+      "f1_score": 0.9807
+    },
+    {
+      "name": "Decision Tree",
+      "accuracy": 0.9744,
+      "precision": 0.9756,
+      "recall": 0.9744,
+      "f1_score": 0.9744
+    }
+  ],
+  "classification_report": {
+    "Excellent": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 33.0
+    },
+    "Good": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 45.0
+    },
+    "Average": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 48.0
+    },
+    "Needs Improvement": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 30.0
+    },
+    "accuracy": 1.0,
+    "macro avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 156.0
+    },
+    "weighted avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 156.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      33,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      45,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      48,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      30
+    ]
+  ],
+  "feature_importance": [
+    {
+      "feature": "previous_marks",
+      "importance": 0.3963
+    },
+    {
+      "feature": "assignment_score",
+      "importance": 0.2567
+    },
+    {
+      "feature": "attendance",
+      "importance": 0.201
+    },
+    {
+      "feature": "study_hours",
+      "importance": 0.1378
+    },
+    {
+      "feature": "sleep_hours",
+      "importance": 0.0082
+    }
+  ]
+}
